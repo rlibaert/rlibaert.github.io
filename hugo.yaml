@@ -3,28 +3,28 @@ languageCode: en-us
 title: rlibaert
 
 menus:
-    main:
-        - name: Resume
-          pageRef: /resume
-          weight: 10
-        - name: Posts
-          pageRef: /posts
-          weight: 20
-        - name: Tags
-          pageRef: /tags
-          weight: 30
+  main:
+    - name: Resume
+      pageRef: /resume
+      weight: 10
+    - name: Posts
+      pageRef: /posts
+      weight: 20
+    - name: Tags
+      pageRef: /tags
+      weight: 30
 
 module:
-    hugoVersion:
-        extended: false
-        min: 0.116.0
+  hugoVersion:
+    extended: false
+    min: 0.116.0
 
 markup:
-    highlight:
-        codeFences: true
-        noClasses: true
-        style: gruvbox
+  highlight:
+    codeFences: true
+    noClasses: true
+    style: gruvbox
 
 caches:
-    images:
-        dir: :cacheDir/images
+  images:
+    dir: :cacheDir/images

@@ -151,4 +151,4 @@ func (m *Map[K, V]) Swap(key K, value V) (previous V, loaded bool) {
 
 ## Generic sync package
 
-These snippets are properly implemented, tested and documented in a package that you can import into your code: `import "github.com/oaiiae/sync-generic"`.
+These snippets are properly implemented, tested and documented in a package that you can import into your code: `import "github.com/rlibaert/sync-generic"`.
