@@ -23,7 +23,7 @@ markup:
   highlight:
     codeFences: true
     noClasses: true
-    style: gruvbox
+    style: github
 
 caches:
   images:
