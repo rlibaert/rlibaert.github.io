@@ -42,25 +42,25 @@ instance, I often put Docker *inside* of it:
 ```
 
 With this simple file, we are creating a reproducible, shareable, disposable,
-portable, isolated & secure development environment, that is versioned and
+portable, isolated & secure development environment, which is versioned and
 bundled along our project.
 
-Lots of people use tools such as the [VSCode Dev Containers extension] for an
-even simpler way to create, manage and run development containers. Personally, I
+Most people use tools such as the [VSCode Dev Containers extension] for an even
+simpler way to create, manage and run development containers. Personally, I
 settled on [DevPod] as it allows me to use [Zed] instead.
 
 ## Fedora Silverblue
 
 [Silverblue] is an *immutable / atomic* version of Fedora Workstation. It uses a
 read-only root filesystem and is meant to be more stable than regular Linux
-distributions. The update process is especially affected as they mostly require
-to reboot the system to apply updates. This comes with a rollback feature in case
-anything goes wrong.
+distributions. The update process is especially affected as it often require
+to reboot the system to apply updates. This also comes with a rollback feature
+in case anything goes wrong.
 
-While the installation of new packages is still possible (which
-is layer based, pretty much like a Docker image), the philosophy behind
-Silverblue is to keep the base system as vanilla as possible. Instead, you use
-containerization technologies to run new software.
+While the installation of new packages is still possible (which is layer based,
+pretty much like a Docker image), the philosophy behind Silverblue is to keep
+the base system as vanilla as possible. Instead, you use containerization
+technologies to run new software.
 
 ### Podman
 
@@ -105,10 +105,10 @@ DISTRIB_DESCRIPTION="Ubuntu 25.04"
 
 ### Flatpak
 
-[Flatpak] is pretty well known now. It is a way to distribute and install Linux
-applications and their dependencies in a way that we are more used to see with
-appstores on smartphones. It provides the same advantages of sanboxing and
-isolation but for desktop applications.
+[Flatpak] is pretty well known now. Simply put, it distributes and installs
+Linux applications and their dependencies in a way comparable to what we
+already have on smartphones and their stores. It provides the same advantages
+of sanboxing and isolation but for desktop applications.
 
 ## Setting everything up
 
