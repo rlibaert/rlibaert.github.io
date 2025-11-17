@@ -10,8 +10,8 @@ tags:
 After some time developing containerized applications, I made a habit of trying
 to run everything in containers. The ability to sandbox applications allows me
 to keep control over my system and makes me confident to discover new software.
-In this post I will share how I use containerization to keep my development host
-tidy and create portable development environments.
+In this post I will share how I use containerization to create development
+environments and keep my host tidy.
 
 ## Development Containers
 
@@ -45,9 +45,9 @@ With this simple file, we are creating a reproducible, shareable, disposable,
 portable, isolated & secure development environment, which is versioned and
 bundled along our project.
 
-Most people use tools such as the [VSCode Dev Containers extension] for an even
-simpler way to create, manage and run development containers. Personally, I
-settled on [DevPod] as it allows me to use [Zed] instead.
+There exist tools such as the [VSCode Dev Containers extension] that make it
+even more simple to create, manage and run development containers. Personally,
+I settled on [DevPod] as it allows me to use [Zed] instead.
 
 ## Fedora Silverblue
 
@@ -76,11 +76,11 @@ then there is a good chance that it can use Podman as well.
 ### Toolbx
 
 [Toolbx] is built on top of Podman and allows users to run a Linux distribution
-(Fedora, Arch, Ubuntu) in a container, which can be used to install system
-programs that you would usually install directly on your host. Toolbx
-environments are different from plain containers as they have seamless access to
-the user's home directory, devices, Wayland & X11 sockets, networking, ... thus
-behaving like any standard Linux command line environment.
+(Fedora, Arch, Ubuntu) in a container, which can be used to install programs
+that you would usually install directly on your host. Toolbx environments are
+different from plain containers as they have seamless access to the user's home
+directory, devices, Wayland & X11 sockets, networking, ... and thus behave like
+any standard Linux command line environment.
 
 For instance, let's create a new Ubuntu based toolbx:
 
@@ -125,9 +125,9 @@ running `setenforce 0` yields the same result temporarily.
 - The Docker-in-Docker daemon from DevContainer features might fail to start.
 This may be because Fedora uses `nftables` while Docker needs `ip_tables`. To
 fix this, you can simply run `modprobe ip_tables` and restart the container.
-- Silverblue comes with Fedora preinstalled, but this version
-[is known to not be able to play some video contents](https://discussion.fedoraproject.org/t/cant-play-videos-in-firefox/79645).
-A simple workaround is to install the Flathub version of Firefox.
+- Silverblue comes with Firefox preinstalled, but this version is
+[known to be unable to play some video contents](https://discussion.fedoraproject.org/t/cant-play-videos-in-firefox/79645).
+A simple workaround is to install the Flathub version.
 
 [Development Containers]: https://containers.dev/
 [DevContainer Features]: https://containers.dev/features
