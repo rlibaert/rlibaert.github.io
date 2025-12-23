@@ -1,5 +1,1 @@
-<a id="home" href="/">
-    {{ (resources.Get "images/logo.svg").Content | safeHTML }}
-    <div>{{ site.Title }}</div>
-</a>
 {{ partial "menu.html" (dict "menuID" "main" "page" .) }}

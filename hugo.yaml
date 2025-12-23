@@ -4,15 +4,18 @@ title: rlibaert
 
 menus:
   main:
+    - name: rlibaert
+      pageRef: /
+      weight: 10
     - name: Resume
       pageRef: /resume
-      weight: 10
+      weight: 20
     - name: Posts
       pageRef: /posts
-      weight: 20
+      weight: 30
     - name: Tags
       pageRef: /tags
-      weight: 30
+      weight: 40
 
 module:
   hugoVersion:
@@ -23,7 +26,7 @@ markup:
   highlight:
     codeFences: true
     noClasses: true
-    style: evergarden
+    style: github
 
 caches:
   images:
