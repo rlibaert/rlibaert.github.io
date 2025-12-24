@@ -1,7 +1,17 @@
 {{ define "main" }}
-    <article style="margin-top: 5rem;">
-        {{ $avatar := (resources.Get "images/avatar.png").Resize "256x256" }}
-        <img src="{{ $avatar.RelPermalink }}" width="128" height="128" style="margin-left: 1.5rem;" />
-        {{ .Content }}
-    </article>
+<h1>{{ .Title }}</h1>
+<article>{{ .Content }}</article>
+<aside>
+    <p><b>Links</b></p>
+    <nav>
+        <ul>
+            <li><a href="/resume">Resume</a></li>
+            <li><a href="mailto:blog@rlibaert.dev">Contact</a></li>
+            <li><a href="https://github.com/rlibaert">GitHub</a></li>
+            <!--<li>-->
+            <!--<a href="https://linkedin.com/in/romain-libaert">LinkedIn</a>-->
+            <!--</li>-->
+        </ul>
+    </nav>
+</aside>
 {{ end }}
