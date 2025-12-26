@@ -20,7 +20,7 @@ menus:
 module:
   hugoVersion:
     extended: false
-    min: 0.116.0
+    min: 0.153.2
 
 markup:
   highlight:
