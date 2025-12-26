@@ -152,7 +152,7 @@ main {
     }
     h1 {
         grid-area: title;
-        padding: 3rem 1rem;
+        padding: 2rem 1rem;
         margin: 0;
         font-size: 3rem;
         font-weight: 300;
@@ -165,11 +165,15 @@ main {
             text-align: justify;
         }
         .highlight > pre {
-            padding: 1rem;
             border: 1px solid var(--color-200);
             border-radius: 0.25rem;
-            box-shadow: 4px 4px 0px var(--color-100);
-            overflow-x: scroll;
+            box-shadow: 0.25rem 0.25rem 0px var(--color-100);
+            code {
+                display: grid;
+                padding: 0.5rem;
+                overflow-x: scroll;
+                letter-spacing: 0.5px;
+            }
         }
     }
     aside {
