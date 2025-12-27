@@ -163,7 +163,7 @@ main {
         margin: 0;
         font-size: 3rem;
         font-weight: 300;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width=".5rem" height=".5rem" viewBox="0 0 15 15"><path d="M7,7 h2 v2 h-2 v-2" stroke="lightgray" stroke-width="1"/></svg>');
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width=".5rem" height=".5rem" viewBox="0 0 15 15"><circle cx="7" cy="7" r="1" stroke="lightgray" stroke-width="2"/></svg>');
     }
     article {
         grid-area: article;
@@ -171,15 +171,16 @@ main {
         p {
             text-align: justify;
         }
-        .highlight > pre {
+        .highlight pre {
             border: 1px solid var(--color-200);
             border-radius: 0.25rem;
             box-shadow: 0.25rem 0.25rem 0px var(--color-050);
-            code {
-                display: grid;
-                padding: 0.5rem;
-                overflow-x: scroll;
-            }
+        }
+        .highlight code {
+            display: grid;
+            padding: 0.5rem;
+            backdrop-filter: brightness(1.05);
+            overflow-x: scroll;
         }
     }
     aside {
