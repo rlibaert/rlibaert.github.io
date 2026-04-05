@@ -1,23 +1,19 @@
 {{ define "main" }}
-<article class="container mx-auto p-2 overflow-clip">
-    <section class="my-12">
-        <h1>{{ .Title }}</h1>
-    </section>
-    <section class="lg:flex lg:flex-row-reverse lg:items-start gap-12">
-        {{ with .TableOfContents }}
-        <div class="hidden highlight lg:block sticky top-24 flex-none w-3xs">
-            <p class="font-semibold">Links</p>
-            <ul class="[&_li]:list-decimal">
-                <li><a href="/resume">Resume</a></li>
-                <li><a href="mailto:blog@rlibaert.dev">Contact</a></li>
-                <li><a href="https://github.com/rlibaert">GitHub</a></li>
-                <!--<li>-->
-                <!--<a href="https://linkedin.com/in/romain-libaert">LinkedIn</a>-->
-                <!--</li>-->
-            </ul>
-        </div>
-        {{ end }}
-        <div class="text-justify [&_p]:mb-2">{{ .Content }}</div>
-    </section>
-</article>
+<section class="my-12">
+    <h1>{{ .Title }}</h1>
+</section>
+<section class="lg:flex lg:flex-row-reverse lg:items-start gap-12">
+    <div class="hidden highlight lg:block sticky top-24 flex-none w-3xs">
+        <p class="font-semibold">Links</p>
+        <ul class="[&_li]:list-decimal">
+            <li><a href="/resume">Resume</a></li>
+            <li><a href="mailto:blog@rlibaert.dev">Contact</a></li>
+            <li><a href="https://github.com/rlibaert">GitHub</a></li>
+            <!--<li>-->
+            <!--<a href="https://linkedin.com/in/romain-libaert">LinkedIn</a>-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <div class="text-justify [&_p]:mb-2">{{ .Content }}</div>
+</section>
 {{ end }}
