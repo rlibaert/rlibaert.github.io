@@ -1,10 +1,23 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-<article>{{ .Content }}</article>
-<aside>
-{{ with .TableOfContents }}
-    <p><b>Table of Contents</b></p>
-    {{ . }}
-{{ end}}
-</aside>
+<article class="container mx-auto p-2 overflow-clip">
+    <section class="my-12">
+        <h1>{{ .Title }}</h1>
+        <span class="text-xs text-current/50">
+            {{ .Date.Format "January 2, 2006" }} ⏲ {{ .ReadingTime }}m read
+        </span>
+    </section>
+    <section class="lg:flex lg:flex-row-reverse lg:items-start gap-12">
+        {{ with .TableOfContents }}
+        <div class="hidden highlight lg:block sticky top-24 flex-none w-3xs">
+            <p class="font-semibold">Table of Contents</p>
+            <div class="[&_li]:list-decimal">{{ . }}</div>
+        </div>
+        {{ end }}
+        <div
+            class="text-justify [&_p]:mb-2 [&_a]:after:content-['_↗'] [&_a]:hover:bg-current/5"
+        >
+            {{ .Content }}
+        </div>
+    </section>
+</article>
 {{ end }}

@@ -1,12 +1,13 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-<article>
-    {{ .Content }}
+<article class="container mx-auto p-2 overflow-clip">
+    <section class="my-12">
+        <h1>{{ .Title }}</h1>
+    </section>
     {{ range .Pages.GroupByDate "2006" }}
-        <h2>{{ .Key }}</h2>
-        {{ range .Pages }}
-            <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
-        {{ end }}
+    <h2>{{ .Key }}</h2>
+    {{ range .Pages }}
+    <a href="{{ .RelPermalink }}"><h6>{{ .LinkTitle }}</h6></a>
+    {{ end }}
     {{ end }}
 </article>
 {{ end }}

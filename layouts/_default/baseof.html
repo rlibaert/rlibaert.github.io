@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
-<head>
-  {{ partial "head.html" . }}
-</head>
-<body>
-  <header>
-    {{ partial "header.html" . }}
-  </header>
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
-  <footer>
-    {{ partial "footer.html" . }}
-  </footer>
-</body>
+<!doctype html>
+<html
+    lang="{{ site.Language.LanguageCode }}"
+    dir="{{ or site.Language.LanguageDirection `ltr` }}"
+>
+    <head>
+        {{ partial "head.html" . }}
+    </head>
+    {{ $paper := (resources.Get "images/paper.svg") }}
+    <body
+        class="min-h-screen max-w-7xl mx-auto bg-stone-50 bg-repeat text-stone-950 *:px-2"
+        style="background-image: url({{ $paper.RelPermalink }});"
+    >
+        <header
+            class="sticky top-0 z-10 h-16 py-2 bg-stone-50/75 backdrop-blur-sm border-b border-current/10"
+        >
+            {{ partial "header.html" . }}
+        </header>
+        <main class="**:target:scroll-mt-16">
+            {{ block "main" . }}{{ end }}
+        </main>
+        <footer class="sticky top-full py-8">
+            {{ partial "footer.html" . }}
+        </footer>
+    </body>
 </html>
