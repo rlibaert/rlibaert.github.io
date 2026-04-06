@@ -41,8 +41,10 @@
         @apply font-serif mt-4 mb-2 text-left text-lg;
     }
     code {
-        font-weight: 900;
-        letter-spacing: 0.5px;
+        @apply font-black;
+    }
+    ul {
+        @apply ml-4 list-disc;
     }
     .highlight {
         backdrop-filter: brightness(102%);
@@ -51,12 +53,8 @@
         border-radius: 0.25rem;
         margin-block: 1rem;
         padding: 0.5rem;
-        code {
-            overflow-x: scroll;
-            display: grid;
-        }
     }
-    ul {
-        @apply ml-4 list-disc;
+    pre {
+        @apply overflow-x-scroll;
     }
 }
