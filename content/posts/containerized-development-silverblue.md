@@ -9,9 +9,9 @@ tags:
 
 After some time developing containerized applications, I made a habit of trying
 to run everything in containers. The ability to sandbox applications allows me
-to keep control over my system and makes me confident to discover new software.
-In this post I will share how I use containerization to create development
-environments and keep my host tidy.
+to keep control over my system and makes me confident to try and discover new
+software. In this post I will tell you about the different tools I use to
+create disposable development environments and keep my host tidy.
 
 ## Development Containers
 
@@ -45,29 +45,32 @@ With this simple file, we are creating a reproducible, shareable, disposable,
 portable, isolated & secure development environment, which is versioned and
 bundled along our project.
 
-There exist tools such as the [VSCode Dev Containers extension] that make it
-even more simple to create, manage and run development containers. Personally,
-I settled on [DevPod] as it allows me to use [Zed] instead.
+Devcontainers are pretty well integrated in VSCode thanks to the
+[VSCode Dev Containers extension], simplifying greatly creation, management and
+overall usage of development containers. Personally, I settled on [DevPod] as
+it allows me to use [Zed] instead.
 
 ## Fedora Silverblue
 
-[Silverblue] is an *immutable / atomic* version of Fedora Workstation. It uses a
-read-only root filesystem and is meant to be more stable than regular Linux
-distributions. The update process is especially affected as it often require
-to reboot the system to apply updates. This also comes with a rollback feature
-in case anything goes wrong.
+[Silverblue] is an *immutable / atomic* version of Fedora Workstation.
 
-While the installation of new packages is still possible (which is layer based,
-pretty much like a Docker image), the philosophy behind Silverblue is to keep
-the base system as vanilla as possible. Instead, you use containerization
-technologies to run new software.
+Immutable as it uses a read-only root filesystem, forbidding users to write
+outside of their `/home`. New software can only be installed in sandboxed
+environments like containers or Flatpaks. Atomic because system updates are
+transactional: they are effective only after the system is rebooted and can be
+rolled back if anything goes wrong.
+
+Such distributions are believed to be more secure, reliable and stable. Fun
+fact is that you probably use one already as Android fits pretty well in this
+description. Another perk is that you end up with a system that is identical
+for the vast majority of users so you have a very high chance to find resources
+about any problem you would get with the distribution.
 
 ### Podman
 
 Like Docker, [Podman] is a container runtime for developing, managing and
 running containers. The main difference is that it is daemonless and rootless by
-design. To put it simply, a container running under Podman is like any other
-process that would be executed by a regular user.
+design. To put it simply, a Podman container is nothing but a mere user process.
 
 The Podman client uses the same interface as Docker, meaning that if you know
 Docker you already know Podman. Also, if your tools uses Docker under the hood
@@ -125,6 +128,7 @@ running `setenforce 0` yields the same result temporarily.
 - The Docker-in-Docker daemon from DevContainer features might fail to start.
 This may be because Fedora uses `nftables` while Docker needs `ip_tables`. To
 fix this, you can simply run `modprobe ip_tables` and restart the container.
+See this [Github issue](https://github.com/devcontainers/features/issues/1235).
 - Silverblue comes with Firefox preinstalled, but this version is
 [known to be unable to play some video contents](https://discussion.fedoraproject.org/t/cant-play-videos-in-firefox/79645).
 A simple workaround is to install the Flathub version.
