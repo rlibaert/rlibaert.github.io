@@ -8,15 +8,15 @@
     </head>
     {{ $paper := (resources.Get "images/paper.svg") }}
     <body
-        class="min-h-screen mx-auto bg-stone-50 bg-repeat text-stone-950 *:container *:max-w-7xl *:mx-auto *:p-2"
+        class="min-h-screen mx-auto bg-stone-50 bg-repeat text-stone-950 *:container *:max-w-6xl *:mx-auto *:p-2"
         style="background-image: url({{ $paper.RelPermalink }});"
     >
         <header
-            class="sticky top-0 z-10 h-16 bg-stone-50/75 backdrop-blur-sm border-b border-current/10"
+            class="sticky top-0 z-10 h-12 bg-stone-50/75 backdrop-blur-sm border-b border-current/10"
         >
             {{ partial "header.html" . }}
         </header>
-        <main class="**:target:scroll-mt-16">
+        <main class="**:target:scroll-mt-12">
             {{ block "main" . }}{{ end }}
         </main>
         <footer class="sticky top-full my-8">
