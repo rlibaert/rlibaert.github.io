@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between h-full">
     <a
         href="/"
-        class="flex items-center gap-2 h-full text-2xl font-light drop-shadow-[0_0_1px_currentColor]"
+        class="flex items-center gap-1 h-full text-2xl font-light drop-shadow-[0_0_1px_currentColor]"
     >
         {{ $logo := (resources.Get "images/logo.svg") }}
         <span
@@ -10,7 +10,7 @@
         ></span>
         {{ .Site.Title }}
     </a>
-    <ul class="flex gap-6 mr-6 list-none text-lg">
+    <ul class="flex gap-4 mr-2 list-none">
         {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
     </ul>
 </div>
