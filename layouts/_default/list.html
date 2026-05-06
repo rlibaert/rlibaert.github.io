@@ -1,11 +1,8 @@
 {{ define "main" }}
-<section class="my-12">
-    <h1>{{ .Title }}</h1>
-</section>
 {{ range .Pages.GroupByDate "2006" }}
-<h2>{{ .Key }}</h2>
+<h3>{{ .Key }}</h3>
 {{ range .Pages }}
-<a href="{{ .RelPermalink }}"><h6>{{ .LinkTitle }}</h6></a>
+<a href="{{ .RelPermalink }}" class="font-serif">{{ .LinkTitle }}</a><br />
 {{ end }}
 {{ end }}
 {{ end }}

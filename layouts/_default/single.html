@@ -5,18 +5,16 @@
         {{ .Date.Format "January 2, 2006" }} ⏲ {{ .ReadingTime }}m read
     </span>
 </section>
-<section
-    class="lg:flex lg:flex-row-reverse lg:items-start lg:justify-between gap-12"
->
+<section class="lg:flex lg:flex-row-reverse lg:items-start gap-8">
     {{ with .TableOfContents }}
-    <div class="hidden highlight lg:block sticky top-24 flex-none w-3xs">
-        <p class="font-serif border-b border-inherit">Table of Contents</p>
+    <div
+        class="hidden lg:block lg:flex-none w-3xs highlight sticky top-22 my-0"
+    >
+        <h6 class="mt-0 border-b border-inherit">Table of Contents</h6>
         <div class="[&_li]:list-decimal">{{ . }}</div>
     </div>
     {{ end }}
-    <div
-        class="text-justify [&_p]:mb-2 [&_a]:after:content-['_↗'] [&_a]:hover:bg-current/5"
-    >
+    <div class="min-w-0 [&_a]:underline [&_a]:after:content-['_↗']">
         {{ .Content }}
     </div>
 </section>

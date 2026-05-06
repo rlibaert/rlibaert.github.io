@@ -2,9 +2,11 @@
 <section class="my-12">
     <h1>{{ .Title }}</h1>
 </section>
-<section class="lg:flex lg:flex-row-reverse lg:items-start gap-12">
-    <div class="hidden highlight lg:block sticky top-24 flex-none w-3xs">
-        <p class="font-serif border-b border-inherit">Links</p>
+<section class="lg:flex lg:flex-row-reverse lg:items-start gap-8">
+    <div
+        class="hidden lg:block lg:flex-none w-3xs highlight sticky top-22 my-0"
+    >
+        <h6 class="mt-0 border-b border-inherit">Links</h6>
         <ul class="[&_li]:list-decimal">
             <li><a href="/resume">Resume</a></li>
             <li><a href="mailto:blog@rlibaert.dev">Contact</a></li>
@@ -14,6 +16,8 @@
             <!--</li>-->
         </ul>
     </div>
-    <div class="text-justify [&_p]:mb-2">{{ .Content }}</div>
+    <div class="min-w-0 [&_a]:underline [&_a]:after:content-['_↗']">
+        {{ .Content }}
+    </div>
 </section>
 {{ end }}

@@ -23,28 +23,31 @@
 
 @layer base {
     h1 {
-        @apply font-serif mt-4 mb-2 text-left text-5xl;
+        @apply mt-8 mb-2 text-5xl font-semibold font-serif;
     }
     h2 {
-        @apply font-serif mt-4 mb-2 text-left text-4xl;
+        @apply mt-8 mb-2 text-4xl font-semibold font-serif;
     }
     h3 {
-        @apply font-serif mt-4 mb-2 text-left text-3xl;
+        @apply mt-8 mb-2 text-3xl font-medium font-serif;
     }
     h4 {
-        @apply font-serif mt-4 mb-2 text-left text-2xl;
+        @apply mt-8 mb-2 text-2xl font-medium font-serif;
     }
     h5 {
-        @apply font-serif mt-4 mb-2 text-left text-xl;
+        @apply mt-8 mb-2 text-xl font-normal font-serif;
     }
     h6 {
-        @apply font-serif mt-4 mb-2 text-left text-lg;
+        @apply mt-8 mb-2 text-lg font-normal font-serif;
+    }
+    p {
+        @apply mt-0 mb-2 text-justify font-sans;
     }
     code {
         @apply font-black;
     }
     ul {
-        @apply ml-4 list-disc;
+        @apply list-disc list-inside ml-2;
     }
     .highlight {
         backdrop-filter: brightness(102%);
