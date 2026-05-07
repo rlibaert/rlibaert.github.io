@@ -8,11 +8,11 @@
     </head>
     {{ $paper := (resources.Get "images/paper.svg") }}
     <body
-        class="container min-h-screen max-w-5xl mx-auto p-2 *:p-2 bg-stone-50 bg-repeat text-stone-950"
+        class="container min-h-screen max-w-5xl mx-auto p-2 *:p-2 bg-stone-100 bg-repeat text-stone-900"
         style="background-image: url({{ $paper.RelPermalink }});"
     >
         <header
-            class="sticky top-2 z-10 h-12 bg-stone-50/75 backdrop-blur-sm backdrop-brightness-105 inset-ring inset-ring-current/20 rounded-xl"
+            class="sticky top-2 z-10 h-12 bg-stone-100/75 backdrop-blur-sm backdrop-brightness-105 inset-ring inset-ring-current/20 rounded-xl"
         >
             {{ partial "header.html" . }}
         </header>
