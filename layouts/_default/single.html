@@ -1,9 +1,23 @@
 {{ define "main" }}
 <section class="my-12">
     <h1>{{ .Title }}</h1>
-    <span class="text-xs text-current/50">
+    {{ with .Params.tags }}
+    <div
+        class="text-xs text-current/50 font-medium uppercase tracking-wide flex gap-1 my-0.5"
+    >
+        {{ range . }}
+        <a
+            class="bg-current/10 px-1.5 py-0.5 rounded-md inset-ring"
+            href="/tags/{{ . }}"
+        >
+            {{ . }}
+        </a>
+        {{ end }}
+    </div>
+    {{ end }}
+    <div class="text-xs text-current/50">
         {{ .Date.Format "January 2, 2006" }} ⏲ {{ .ReadingTime }}m read
-    </span>
+    </div>
 </section>
 <section class="lg:flex lg:flex-row-reverse lg:items-start gap-8">
     {{ with .TableOfContents }}
