@@ -2,9 +2,7 @@
 <section class="my-12">
     <h1>{{ .Title }}</h1>
     {{ with .Params.tags }}
-    <div
-        class="text-xs text-current/50 font-medium uppercase tracking-wide flex gap-1 my-0.5"
-    >
+    <div class="text-xs uppercase tracking-wide flex gap-1 my-0.5">
         {{ range . }}
         <a
             class="bg-current/10 px-1.5 py-0.5 rounded-md inset-ring"
@@ -28,8 +26,6 @@
         <div class="[&_li]:list-decimal">{{ . }}</div>
     </div>
     {{ end }}
-    <div class="min-w-0 [&_a]:underline [&_a]:after:content-['_↗']">
-        {{ .Content }}
-    </div>
+    <div class="min-w-0">{{ .Content }}</div>
 </section>
 {{ end }}

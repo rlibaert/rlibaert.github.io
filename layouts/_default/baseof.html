@@ -16,7 +16,9 @@
         >
             {{ partial "header.html" . }}
         </header>
-        <main class="mx-4 **:target:scroll-mt-16">
+        <main
+            class="mx-4 **:target:scroll-mt-16 [&_a]:text-orange-700 [&_a]:font-medium [&_a]:hover:bg-current/20 [&_a]:focus:bg-current/20"
+        >
             {{ block "main" . }}{{ end }}
         </main>
         <footer class="sticky top-full my-8">
