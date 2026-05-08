@@ -23,22 +23,22 @@
 
 @layer base {
     h1 {
-        @apply mt-8 mb-2 text-5xl font-semibold font-serif;
+        @apply mt-8 mb-2 contrast-125 font-serif font-semibold text-5xl;
     }
     h2 {
-        @apply mt-8 mb-2 text-4xl font-semibold font-serif;
+        @apply mt-8 mb-2 contrast-125 font-serif font-semibold text-4xl;
     }
     h3 {
-        @apply mt-8 mb-2 text-3xl font-medium font-serif;
+        @apply mt-8 mb-2 contrast-125 font-serif font-medium text-3xl;
     }
     h4 {
-        @apply mt-8 mb-2 text-2xl font-medium font-serif;
+        @apply mt-8 mb-2 contrast-125 font-serif font-medium text-2xl;
     }
     h5 {
-        @apply mt-8 mb-2 text-xl font-normal font-serif;
+        @apply mt-8 mb-2 contrast-125 font-serif font-normal text-xl;
     }
     h6 {
-        @apply mt-8 mb-2 text-lg font-normal font-serif;
+        @apply mt-8 mb-2 contrast-125 font-serif font-normal text-lg;
     }
     p {
         @apply mt-0 mb-2 text-justify font-sans;

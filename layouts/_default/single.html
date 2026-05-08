@@ -20,10 +20,8 @@
 <section class="lg:flex lg:flex-row-reverse lg:items-start gap-8">
     {{ with .TableOfContents }}
     <div class="hidden lg:block lg:flex-none w-3xs sticky top-22">
-        <div class="font-medium mb-2">Table of Contents</div>
-        <div class="font-serif border-l border-current/30 [&_li]:list-none">
-            {{ . }}
-        </div>
+        <h6 class="mt-0">Table of Contents</h6>
+        <div class="border-l border-current/30 [&_li]:list-none">{{ . }}</div>
     </div>
     {{ end }}
     <div class="min-w-0">{{ .Content }}</div>
