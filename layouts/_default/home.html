@@ -3,18 +3,18 @@
     <h1>{{ .Title }}</h1>
 </section>
 <section class="lg:flex lg:flex-row-reverse lg:items-start gap-8">
-    <div
-        class="hidden lg:block lg:flex-none w-3xs highlight sticky top-22 my-0"
-    >
-        <h6 class="mt-0 border-b border-inherit">Links</h6>
-        <ul class="[&_li]:list-decimal">
-            <li><a href="/resume">Resume</a></li>
-            <li><a href="mailto:blog@rlibaert.dev">Contact</a></li>
-            <li><a href="https://github.com/rlibaert">GitHub</a></li>
-            <!--<li>-->
-            <!--<a href="https://linkedin.com/in/romain-libaert">LinkedIn</a>-->
-            <!--</li>-->
-        </ul>
+    <div class="hidden lg:block lg:flex-none w-3xs sticky top-22">
+        <div class="font-medium mb-2">Links</div>
+        <div class="font-serif border-l border-current/30 [&_li]:list-none">
+            <ul>
+                <li><a href="/resume">Resume</a></li>
+                <li><a href="mailto:blog@rlibaert.dev">Contact</a></li>
+                <li><a href="https://github.com/rlibaert">GitHub</a></li>
+                <!--<li>-->
+                <!--<a href="https://linkedin.com/in/romain-libaert">LinkedIn</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
     </div>
     <div class="min-w-0">{{ .Content }}</div>
 </section>

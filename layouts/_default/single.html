@@ -13,17 +13,17 @@
         {{ end }}
     </div>
     {{ end }}
-    <div class="text-xs text-current/50">
+    <div class="text-xs text-current/30">
         {{ .Date.Format "January 2, 2006" }} ⏲ {{ .ReadingTime }}m read
     </div>
 </section>
 <section class="lg:flex lg:flex-row-reverse lg:items-start gap-8">
     {{ with .TableOfContents }}
-    <div
-        class="hidden lg:block lg:flex-none w-3xs highlight sticky top-22 my-0"
-    >
-        <h6 class="mt-0 border-b border-inherit">Table of Contents</h6>
-        <div class="[&_li]:list-decimal">{{ . }}</div>
+    <div class="hidden lg:block lg:flex-none w-3xs sticky top-22">
+        <div class="font-medium mb-2">Table of Contents</div>
+        <div class="font-serif border-l border-current/30 [&_li]:list-none">
+            {{ . }}
+        </div>
     </div>
     {{ end }}
     <div class="min-w-0">{{ .Content }}</div>
