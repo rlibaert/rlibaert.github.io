@@ -50,7 +50,7 @@
         @apply list-disc ml-4;
     }
     .highlight {
-        backdrop-filter: brightness(102%);
+        backdrop-filter: blur(1px) contrast(105%);
         border: 1px solid rgba(from currentColor r g b / 0.3);
         border-radius: 0.5rem;
         margin-block: 1rem;
