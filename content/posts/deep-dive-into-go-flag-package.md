@@ -1,31 +1,26 @@
 ---
 date: '2025-03-22T21:42:54Z'
 draft: false
-title: 'Parse flags like a boss with plain Go'
+title: 'Advanced flag parsing in standard Go'
 tags:
 - golang
+- snippets
 ---
 
-Most CLI applications require bits of configuration when being invoked. In Go,
-this can be done natively using the `flag` package. It proposes a simple
-interface for defining argument flags sets, but may feel like it is lacking some
-functionality. Over time, a plethora of libraries were developed; `spf13/cobra`
-and `urfave/cli` being probably the most used ones (both have tens of thousands
-stars on GitHub).
-
-While they offer lots of features out of the box, I often found them quite
-complicated and I wanted to understand how they worked and tried to get the bare
-minimum of their functionality with as little code as possible.
+Over time, a plethora of libraries were developed to build complex CLI
+applications; `spf13/cobra` and `urfave/cli` being probably the most used ones
+(both have tens of thousands stars on GitHub). While they offer lots of features
+out of the box, I often found them complex and overkill for my needs.
 
 In this post, we will have an overview of how Go's `flag` works and see some
 advanced uses of it. We will then try to implement parsing of complex values
 such as comma-separated arguments or slices.
 
-## The basics of flag parsing
+## The basics
 
-The `flag` package looks a bit overwhelming but the basic usage is actually not
-that complicated. Most of the time, users will only need to declare flags and
-make a call to do the parsing:
+The `flag` package implements flag sets and flags. It can look a bit overwhelming
+but the basic usage generally boils down to declaring flags and calling a parsing
+function:
 
 ```go
 func main() {
@@ -47,7 +42,7 @@ Usage:
 ```
 
 Flags may be defined by calling functions named after the type of data that
-needs to be parsed. Basic types are usually available. For instance:
+needs to be parsed. Basic types are available:
 
 ```go
 // These functions defines a named flag with a default value and usage string.
@@ -96,10 +91,13 @@ func main() {
 }
 ```
 
-## Parsing user-defined values
+## Parsing custom types
 
-Parsing basic types is cool but you will probably need to parse more complex
-objects. This may be done using the `Func` flag:
+The package also provides ways to parse more complex objects.
+
+### Using `Func`
+
+This may be done using the `Func` flag:
 
 ```go
 func main() {
@@ -119,6 +117,10 @@ func main() {
 This can feel quite hacky/messy, so I would not use this unless the configured
 object is limited in scope and has a simple parsing function. And this does not
 fully support default values as well.
+
+### Using the `Value` interface
+
+#### Custom implementation
 
 In our example, the proper way would be to define a `person` type implementing
 the `flag.Value` interface and use the `flag.Var` function:
@@ -153,56 +155,69 @@ func main() {
 }
 ```
 
-We can also implement the `Set` method to parse comma-separated lists of values:
+#### Generic stringer implementation
+
+We can leverage `fmt.Stringer` to create a generic value allowing us to use any
+type implementing this interface as a flag value.
 
 ```go
-type names []string
-
-func (x *names) String() string {
-    if x == nil || len(*x) == 0 {
-        return ""
-    }
-    return fmt.Sprint(*x)
+type stringerValue[T fmt.Stringer] struct {
+    p     *T
+    parse func(string) (T, error)
 }
 
-func (x *names) Set(s string) error {
-    *x = strings.Split(s, ",")
+func (s stringerValue[T]) String() string {
+    if s.p == nil {
+        return ""
+    }
+    return (*s.p).String()
+}
+
+func (s stringerValue[T]) Set(value string) error {
+    parsed, err := s.parse(value)
+    if err != nil {
+        return err
+    }
+    *s.p = parsed
     return nil
+}
+
+func StringerValue[T fmt.Stringer](p *T, parse func(string) (T, error)) flag.Value {
+    return stringerValue[T]{p, parse}
+}
+
+func main() {
+    u := &url.URL{}
+    a := &mail.Address{Address: "foo@example.com"}
+    ip := netip.MustParseAddr("127.0.0.1")
+    flag.Var(StringerValue(&u, url.Parse), "url", "")
+    flag.Var(StringerValue(&a, mail.ParseAddress), "mail", "")
+    flag.Var(StringerValue(&ip, netip.ParseAddr), "ip", "")
+    flag.Parse()
+    fmt.Println(u, a, ip)
 }
 ```
 
-From here, I realized how difficult it was to make a library with an interface
-that is precise, easy to use but also flexible. I gave it a try but always ended
-up getting something either very opinionated or relied on non-native types.
+## Environment configuration
 
-Indeed, in the last snippet of code, we are splitting the flag value to store
-sub elements into a slice. This implies that the slice will contain only the
-elements of the last parsed flag, and this may or may not be what is needed.
-There is a lot of variants that can be though of:
+It may not be obvious, but the standard library provides enough tools to parse environment
+variables along with command line flags, a common feature in CLI libraries.
+
+The following example parses environment variables to override default command
+line flag values, using a mapping function to convert flag names to environment
+variable names.
 
 ```go
-// Parses semicolon separated values
-func (x *names) Set(s string) error {
-    *x = strings.Split(s, ";")
-    return nil
-}
-
-// Parses whitespace separated values
-func (x *names) Set(s string) error {
-    *x = strings.Fields(s)
-    return nil
-}
-
-// Parses whitespace separated values
-// Values are appended over multiple flags
-func (x *names) Set(s string) error {
-    *x = append(*x, strings.Fields(s)...)
-    return nil
-}
-
-// Values are appended over multiple flags as is
-func (x *names) Set(s string) error {
-    *x = append(*x, s)
-    return nil
+func main() {
+    path := flag.String("config", "", "configuration file `path`")
+    flag.VisitAll(func(f *flag.Flag) {
+        // Map every command line flag to the corresponding environment variable
+        env := f.Name
+        env = strings.NewReplacer(".", "_", "-", "").Replace(env)
+        env = strings.ToUpper(env)
+        f.Value.Set(os.Getenv(env))
+    })
+    flag.Parse()
+    fmt.Println(*path)
 }
 ```

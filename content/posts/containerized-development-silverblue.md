@@ -10,16 +10,15 @@ tags:
 After some time developing containerized applications, I made a habit of trying
 to run everything in containers. The ability to sandbox applications allows me
 to keep control over my system and makes me confident to try and discover new
-software. In this post I will tell you about the different tools I use to
-create disposable development environments and keep my host tidy.
+software. In this post I show the tools I use to create disposable development
+environments and to keep my system tidy.
 
 ## Development Containers
 
 Quoting the website, [Development Containers] "allows you to use a container as
-a full-featured development environment", bringing the benefits of
-containerization to software development. Basically you can start using a
-development container by adding to your project a `.devcontainer.json` file as
-simple as:
+a full-featured development environment", bringing the benefits of containerization
+to software development. Basically you can start using a development container
+by adding to your project a `.devcontainer.json` file as simple as:
 
 ```json
 { "image": "mcr.microsoft.com/devcontainers/go" }
@@ -43,7 +42,10 @@ instance, I often put Docker *inside* of it:
 
 With this simple file, we are creating a reproducible, shareable, disposable,
 portable, isolated & secure development environment, which is versioned and
-bundled along our project.
+bundled along our project. This example can seem quite trivial, but the
+[specification](https://containers.dev/implementors/spec/) is very comprehensive,
+allowing you to further configure the development environment and install tools,
+libraries or even editor extensions.
 
 Devcontainers are pretty well integrated in VSCode thanks to the
 [VSCode Dev Containers extension], simplifying greatly creation, management and
@@ -113,24 +115,21 @@ Linux applications and their dependencies in a way comparable to what we
 already have on smartphones and their stores. It provides the same advantages
 of sanboxing and isolation but for desktop applications.
 
-## Setting everything up
+## Limitations
 
-Thanks to this workflow, there only a few steps to get a new system up and ready
-for development. On a freshly installed Silverblue system, you would simply need
-to flatpak install VSCode and its DevContainers extension, pull and open your
-project in the development container and you're good!
-
-However, here is a few things that I ran into that may help:
-
-- SELinux might get in the way when running containers. I usually edit
-`/etc/selinux/config` to use permissive mode instead of enforcing. Alternatively
-running `setenforce 0` yields the same result temporarily.
-- The Docker-in-Docker daemon from DevContainer features might fail to start.
-This may be because Fedora uses `nftables` while Docker needs `ip_tables`. To
-fix this, you can simply run `modprobe ip_tables` and restart the container.
+Because Fedora uses `nftables`, while Docker needs `ip_tables`, the Docker-in-Docker
+daemon from DevContainer features might fail to start.
+To fix this, you can simply run `modprobe ip_tables` and restart the container.
+You may also add a file `/etc/modules-load.d/ip_tables.conf` to persist that
+change across reboots.
 See this [Github issue](https://github.com/devcontainers/features/issues/1235).
-- Silverblue comes with Firefox preinstalled, but this version is
-[known to be unable to play some video contents](https://discussion.fedoraproject.org/t/cant-play-videos-in-firefox/79645).
+
+This workflow is has been successful to develop cloud-native applications but
+the containerization might get in the way for developing with hardware
+(e.g. microcontrollers, USB devices).
+
+Silverblue comes with Firefox preinstalled, but this version is [known to be
+unable to play some video contents](https://discussion.fedoraproject.org/t/cant-play-videos-in-firefox/79645).
 A simple workaround is to install the Flathub version.
 
 [Development Containers]: https://containers.dev/
