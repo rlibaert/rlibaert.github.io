@@ -11,7 +11,7 @@
         {{ .Site.Title }}
     </a>
     <ul
-        class="flex list-none gap-1 [&_a]:px-2 [&_a]:py-1 [&_a]:rounded-md [&_a]:hover:backdrop-brightness-95"
+        class="flex list-none gap-4 pr-2 font-medium *:hover:underline *:focus:underline"
     >
         {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
     </ul>
