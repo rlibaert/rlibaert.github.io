@@ -1,11 +1,11 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/base",
-    "features": {
-        "ghcr.io/devcontainers/features/hugo:1": {},
-        "ghcr.io/devcontainers/features/node:1": {}
-    },
-    "postCreateCommand": {
-        "tailwindcss": "npm install tailwindcss @tailwindcss/cli"
-    }
-    // "forwardPorts": [1313]
+  "image": "mcr.microsoft.com/devcontainers/base",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/hugo:1": {}
+  },
+  "postCreateCommand": {
+    "tailwindcss": "npm install tailwindcss @tailwindcss/cli"
+  }
+  // "forwardPorts": [1313]
 }
