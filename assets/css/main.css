@@ -23,25 +23,25 @@
 
 @layer base {
     h1 {
-        @apply mt-8 mb-2 contrast-125 font-serif font-semibold text-5xl;
+        @apply mt-8 mb-4 contrast-125 font-serif font-semibold text-5xl;
     }
     h2 {
-        @apply mt-8 mb-2 contrast-125 font-serif font-semibold text-4xl;
+        @apply mt-8 mb-4 contrast-125 font-serif font-semibold text-4xl;
     }
     h3 {
-        @apply mt-8 mb-2 contrast-125 font-serif font-medium text-3xl;
+        @apply mt-8 mb-4 contrast-125 font-serif font-medium text-3xl;
     }
     h4 {
-        @apply mt-8 mb-2 contrast-125 font-serif font-medium text-2xl;
+        @apply mt-8 mb-4 contrast-125 font-serif font-medium text-2xl;
     }
     h5 {
-        @apply mt-8 mb-2 contrast-125 font-serif font-normal text-xl;
+        @apply mt-8 mb-4 contrast-125 font-serif font-normal text-xl;
     }
     h6 {
-        @apply mt-8 mb-2 contrast-125 font-serif font-normal text-lg;
+        @apply mt-8 mb-4 contrast-125 font-serif font-normal text-lg;
     }
     p {
-        @apply mt-0 mb-2 text-justify font-sans;
+        @apply mt-0 mb-4 text-justify font-sans;
     }
     code {
         @apply font-black;

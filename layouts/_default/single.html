@@ -2,7 +2,7 @@
 <section class="my-12">
     <h1>{{ .Title }}</h1>
     {{ with .Params.tags }}
-    <div class="text-xs uppercase tracking-wide flex gap-1 my-0.5">
+    <div class="text-xs uppercase tracking-wide flex gap-1 my-1">
         {{ range . }}
         <a
             class="bg-current/10 px-1.5 py-0.5 rounded-md inset-ring"
@@ -20,7 +20,7 @@
 <section class="lg:flex lg:flex-row-reverse lg:items-start gap-16">
     {{ with .TableOfContents }}
     <div class="hidden lg:block lg:flex-none w-3xs sticky top-22">
-        <h6 class="mt-0">Table of Contents</h6>
+        <h6 class="my-0">Table of Contents</h6>
         <div class="border-l border-current/30 [&_li]:list-none">{{ . }}</div>
     </div>
     {{ end }}
