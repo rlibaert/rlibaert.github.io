@@ -1,35 +1,44 @@
 /* Fonts */
 
 @font-face {
-    font-family: "Inter";
+    font-family: "Figtree";
     font-style: normal;
-    font-weight: 100 900;
+    font-weight: 300 900;
     font-display: swap;
-    src: url("/fonts/inter-var.woff2") format("woff2");
+    src: url("/fonts/figtree-var.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: "Inter";
+    font-family: "Figtree";
+    font-style: italic;
+    font-weight: 300 900;
+    font-display: swap;
+    src: url("/fonts/figtree-var-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Bitter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/bitter-var.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Bitter";
     font-style: italic;
     font-weight: 100 900;
     font-display: swap;
-    src: url("/fonts/inter-var-italic.woff2") format("woff2");
+    src: url("/fonts/bitter-var-italic.woff2") format("woff2");
 }
 
+/* Recursive pinned to MONO=1 CASL=0; the slnt axis serves italics. */
 @font-face {
-    font-family: "JetBrains Mono";
-    font-style: normal;
-    font-weight: 100 800;
+    font-family: "Recursive Mono Linear";
+    font-style: oblique 0deg 15deg;
+    font-weight: 400 700;
     font-display: swap;
-    src: url("/fonts/jetbrains-mono-var.woff2") format("woff2");
-}
-
-@font-face {
-    font-family: "Source Serif 4";
-    font-style: normal;
-    font-weight: 200 900;
-    font-display: swap;
-    src: url("/fonts/source-serif-4-var.woff2") format("woff2");
+    src: url("/fonts/recursive-mono-linear-var.woff2") format("woff2");
 }
 
 /* Tokens: light values on :root, dark overrides on [data-theme="dark"]. */
@@ -37,9 +46,9 @@
 :root {
     color-scheme: light;
 
-    --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
-    --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
-    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+    --font-sans: Figtree, ui-sans-serif, system-ui, sans-serif;
+    --font-serif: Bitter, ui-serif, Georgia, serif;
+    --font-mono: "Recursive Mono Linear", ui-monospace, SFMono-Regular, monospace;
 
     --color-bg: oklch(100% 0 0);
     --color-surface: oklch(98.5% 0 0);
