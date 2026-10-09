@@ -1,6 +1,7 @@
 {
   "image": "mcr.microsoft.com/devcontainers/base",
   "features": {
+    "ghcr.io/devcontainers-extra/features/claude-code:2": {},
     "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers/features/hugo:1": {}
   },
