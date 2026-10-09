@@ -1,8 +1,16 @@
 {{ define "main" }}
+<header class="page-header">
+    <h1 class="page-title">
+        {{- if eq .Kind "term" }}<span class="page-title__hash">#</span>{{ .Data.Term }}{{ else }}{{ .Title }}{{ end -}}
+    </h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+</header>
 {{ range .Pages.GroupByDate "2006" }}
-<h3>{{ .Key }}</h3>
-{{ range .Pages }}
-<a href="{{ .RelPermalink }}" class="font-serif">{{ .LinkTitle }}</a><br />
-{{ end }}
+<section class="post-group">
+    <h2 class="section-label">{{ .Key }}</h2>
+    <div class="post-list">
+        {{ range .Pages }}{{ partial "post-item.html" . }}{{ end }}
+    </div>
+</section>
 {{ end }}
 {{ end }}

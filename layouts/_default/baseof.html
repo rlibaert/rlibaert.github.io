@@ -6,22 +6,14 @@
     <head>
         {{ partial "head.html" . }}
     </head>
-    {{ $paper := (resources.Get "images/paper.svg") }}
-    <body
-        class="container min-h-screen max-w-6xl mx-auto p-2 *:p-2 bg-repeat bg-stone-100 text-stone-700 dark:bg-stone-950 dark:text-stone-300"
-        style="background-image: url({{ $paper.RelPermalink }});"
-    >
-        <header
-            class="sticky top-2 z-10 h-12 bg-stone-100/60 dark:bg-stone-950/60 backdrop-blur-sm *:contrast-125 backdrop-brightness-105 inset-ring inset-ring-current/30 rounded-xl"
-        >
+    <body>
+        <header class="site-header">
             {{ partial "header.html" . }}
         </header>
-        <main
-            class="md:mx-4 lg:mx-8 **:target:scroll-mt-16 [&_a]:text-orange-700 dark:[&_a]:text-lime-300 [&_a]:font-medium [&_a]:hover:bg-current/20 [&_a]:focus:bg-current/20"
-        >
+        <main class="site-main container">
             {{ block "main" . }}{{ end }}
         </main>
-        <footer class="sticky top-full my-8">
+        <footer class="site-footer">
             {{ partial "footer.html" . }}
         </footer>
     </body>
