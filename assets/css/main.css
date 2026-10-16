@@ -339,6 +339,11 @@ pre {
     display: block;
 }
 
+/* System icon: wider viewBox (26x24) at the same scale as the others. */
+.theme-toggle .icon-system {
+    width: calc(22px * 26 / 24);
+}
+
 /* System icon: the icon of the resolved theme overlaps the other one. */
 [data-theme="dark"] .theme-toggle .system-light,
 :root:not([data-theme="dark"]) .theme-toggle .system-dark {

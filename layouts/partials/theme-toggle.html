@@ -4,30 +4,32 @@
     aria-label="Toggle theme"
     title="Toggle theme"
 >
-    <svg class="icon-system" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <!-- The light and dark icons at 0.75 size, sun lower left and moon upper
+         right. The one matching the resolved theme sits in front, with a gap
+         cut out of the one behind. Strokes are 2.4 so they render at 1.8. -->
+    <svg class="icon-system" viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <defs>
-            <g id="theme-toggle-sun">
+            <g id="theme-toggle-sun" transform="translate(-0.5 5) scale(0.75)">
                 <circle cx="12" cy="12" r="4" />
                 <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
             </g>
-            <path id="theme-toggle-moon" d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-            <!-- Cut the icon underneath around the one on top. -->
-            <mask id="theme-toggle-under-sun" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-                <rect width="24" height="24" fill="white" stroke="none" />
-                <use href="#theme-toggle-sun" transform="translate(-0.75 3) scale(0.75)" fill="black" stroke="black" stroke-width="5" />
+            <path id="theme-toggle-moon" transform="translate(9.25 0) scale(0.75)" d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            <mask id="theme-toggle-behind-sun" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="24">
+                <rect width="26" height="24" fill="white" stroke="none" />
+                <circle cx="8.5" cy="14" r="9.4" fill="black" stroke="none" />
             </mask>
-            <mask id="theme-toggle-under-moon" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-                <rect width="24" height="24" fill="white" stroke="none" />
-                <use href="#theme-toggle-moon" transform="translate(6.5 3) scale(0.75)" fill="black" stroke="black" stroke-width="5" />
+            <mask id="theme-toggle-behind-moon" maskUnits="userSpaceOnUse" x="0" y="0" width="26" height="24">
+                <rect width="26" height="24" fill="white" stroke="none" />
+                <use href="#theme-toggle-moon" fill="black" stroke="black" stroke-width="5.07" />
             </mask>
         </defs>
         <g class="system-light">
-            <use href="#theme-toggle-moon" transform="translate(6.5 3) scale(0.75)" mask="url(#theme-toggle-under-sun)" />
-            <use href="#theme-toggle-sun" transform="translate(-0.75 3) scale(0.75)" />
+            <use href="#theme-toggle-moon" mask="url(#theme-toggle-behind-sun)" />
+            <use href="#theme-toggle-sun" />
         </g>
         <g class="system-dark">
-            <use href="#theme-toggle-sun" transform="translate(-0.75 3) scale(0.75)" mask="url(#theme-toggle-under-moon)" />
-            <use href="#theme-toggle-moon" transform="translate(6.5 3) scale(0.75)" />
+            <use href="#theme-toggle-sun" mask="url(#theme-toggle-behind-moon)" />
+            <use href="#theme-toggle-moon" />
         </g>
     </svg>
     <svg class="icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
