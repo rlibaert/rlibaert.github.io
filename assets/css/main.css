@@ -339,6 +339,12 @@ pre {
     display: block;
 }
 
+/* System icon: the icon of the resolved theme overlaps the other one. */
+[data-theme="dark"] .theme-toggle .system-light,
+:root:not([data-theme="dark"]) .theme-toggle .system-dark {
+    display: none;
+}
+
 /* Shared components */
 
 .page-header {
