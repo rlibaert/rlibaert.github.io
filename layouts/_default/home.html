@@ -1,21 +1,22 @@
 {{ define "main" }}
-<section class="my-12">
-    <h1>{{ .Title }}</h1>
-</section>
-<section class="lg:flex lg:flex-row-reverse lg:items-start gap-16">
-    <div class="hidden lg:block lg:flex-none w-3xs sticky top-22">
-        <h6 class="my-0">Links</h6>
-        <div class="border-l border-current/30 [&_li]:list-none">
-            <ul>
-                <li><a href="/resume">Resume</a></li>
-                <li><a href="mailto:blog@rlibaert.dev">Contact</a></li>
-                <li><a href="https://github.com/rlibaert">GitHub</a></li>
-                <!--<li>-->
-                <!--<a href="https://linkedin.com/in/romain-libaert">LinkedIn</a>-->
-                <!--</li>-->
-            </ul>
-        </div>
+<section class="intro">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="prose">{{ .Content }}</div>
+    <div class="intro__actions">
+        <a href="/resume" class="button button--primary">Resume</a>
+        <a href="https://github.com/rlibaert" class="button">GitHub</a>
+        <a href="mailto:blog@rlibaert.dev" class="button">Contact</a>
     </div>
-    <div class="min-w-0">{{ .Content }}</div>
 </section>
+{{ with where site.RegularPages "Section" "posts" }}
+<section class="recent">
+    <div class="recent__header">
+        <h2 class="section-label">Recent posts</h2>
+        <a href="/posts" class="recent__all">All posts →</a>
+    </div>
+    <div class="post-list">
+        {{ range first 5 . }}{{ partial "post-item.html" . }}{{ end }}
+    </div>
+</section>
+{{ end }}
 {{ end }}

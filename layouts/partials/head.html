@@ -1,8 +1,21 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+{{ with .Description | default .Summary | plainify }}<meta name="description" content="{{ . | truncate 160 }}">{{ end }}
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161619" media="(prefers-color-scheme: dark)">
+<script>
+  // Resolve the theme before first paint to avoid a flash of the wrong one.
+  (function () {
+    var pref = "system";
+    try { pref = localStorage.getItem("theme") || "system"; } catch (e) {}
+    var dark = pref === "dark" || (pref === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.dataset.themePref = pref;
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+  })();
+</script>
 {{ $logo := (resources.Get "images/logo.svg") }}
 <link rel="icon" href="{{ $logo.RelPermalink }}" type="image/svg+xml" />
-{{ with (templates.Defer (dict "key" "global")) }}
-  {{ partialCached "head/css.html" . }}
-{{ end }}
+<link rel="preload" href="/fonts/figtree-var.woff2" as="font" type="font/woff2" crossorigin>
+{{ partialCached "head/css.html" . }}
+{{ partialCached "head/js.html" . }}

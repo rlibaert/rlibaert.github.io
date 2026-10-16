@@ -1,0 +1,12 @@
+{{- /*
+Renders the tags of a page as chips.
+
+@context {page} . The page.
+*/}}
+{{- with .GetTerms "tags" }}
+<ul class="tags">
+    {{- range . }}
+    <li><a href="{{ .RelPermalink }}" class="tag">{{ .Data.Term }}</a></li>
+    {{- end }}
+</ul>
+{{- end }}

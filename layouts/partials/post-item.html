@@ -1,0 +1,22 @@
+{{- /*
+Renders a post as a list item.
+
+@context {page} . The post.
+*/}}
+<article class="post-item">
+    <time datetime="{{ .Date.Format `2006-01-02` }}" class="post-item__date">
+        {{- .Date.Format "Jan 2, 2006" -}}
+    </time>
+    <div class="post-item__body">
+        <h3 class="post-item__title">
+            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        </h3>
+        {{ with .Summary | plainify }}
+        <p class="post-item__summary">{{ . }}</p>
+        {{ end }}
+        <div class="post-item__meta">
+            <span>{{ .ReadingTime }} min read</span>
+            {{ partial "tags.html" . }}
+        </div>
+    </div>
+</article>

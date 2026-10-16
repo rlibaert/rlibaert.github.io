@@ -1,29 +1,27 @@
 {{ define "main" }}
-<section class="my-12">
-    <h1>{{ .Title }}</h1>
-    {{ with .Params.tags }}
-    <div class="text-xs uppercase tracking-wide flex gap-1 my-1">
-        {{ range . }}
-        <a
-            class="bg-current/10 px-1.5 py-0.5 rounded-md inset-ring"
-            href="/tags/{{ . }}"
-        >
-            {{ . }}
-        </a>
-        {{ end }}
-    </div>
+{{ $toc := and .TableOfContents (gt (len .Fragments.Headings) 0) }}
+<div class="article-layout{{ if $toc }} article-layout--toc{{ end }}">
+    <article class="article">
+        <header class="article__header">
+            <h1 class="page-title">{{ .Title }}</h1>
+            {{ if eq .Section "posts" }}
+            <div class="meta">
+                <time datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date.Format "January 2, 2006" }}</time>
+                <span aria-hidden="true">·</span>
+                <span>{{ .ReadingTime }} min read</span>
+            </div>
+            {{ partial "tags.html" . }}
+            {{ end }}
+        </header>
+        <div class="prose">{{ .Content }}</div>
+    </article>
+    {{ if $toc }}
+    <aside class="toc">
+        <div class="toc__inner">
+            <h2 class="toc__title">On this page</h2>
+            <div class="toc__body">{{ .TableOfContents }}</div>
+        </div>
+    </aside>
     {{ end }}
-    <div class="text-xs text-current/30">
-        {{ .Date.Format "January 2, 2006" }} ⏲ {{ .ReadingTime }}m read
-    </div>
-</section>
-<section class="lg:flex lg:flex-row-reverse lg:items-start gap-16">
-    {{ with .TableOfContents }}
-    <div class="hidden lg:block lg:flex-none w-3xs sticky top-22">
-        <h6 class="my-0">Table of Contents</h6>
-        <div class="border-l border-current/30 [&_li]:list-none">{{ . }}</div>
-    </div>
-    {{ end }}
-    <div class="min-w-0">{{ .Content }}</div>
-</section>
+</div>
 {{ end }}
